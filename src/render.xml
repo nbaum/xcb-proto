@@ -281,6 +281,7 @@ for licensing information.
     <field type="DRAWABLE" name="drawable" />
     <field type="PICTFORMAT" name="format" />
     <valueparam value-mask-type="CARD32"
+                value-mask-mask="CP"
                 value-mask-name="value_mask"
                 value-list-name="value_list" />
   </request>
@@ -288,6 +289,7 @@ for licensing information.
   <request name="ChangePicture" opcode="5">
     <field type="PICTURE" name="picture" />
     <valueparam value-mask-type="CARD32"
+                value-mask-mask="CP"
                 value-mask-name="value_mask"
                 value-list-name="value_list" />
   </request>

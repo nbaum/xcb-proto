@@ -1294,6 +1294,7 @@ parent's cursor will cause an immediate change in the displayed cursor.
     <field type="CARD16" name="class" enum="WindowClass" />
     <field type="VISUALID" name="visual" />
     <valueparam value-mask-type="CARD32"
+                value-mask-mask="CW"
                 value-mask-name="value_mask"
                 value-list-name="value_list" />
     <doc>
@@ -1375,6 +1376,7 @@ The X server could not allocate the requested resources (no memory?).
     <pad bytes="1" />
     <field type="WINDOW" name="window" />
     <valueparam value-mask-type="CARD32"
+                value-mask-mask="CW"
                 value-mask-name="value_mask"
                 value-list-name="value_list" />
     <doc>
@@ -1692,6 +1694,7 @@ The specified window does not exist.
     <field type="CARD16" name="value_mask" />
     <pad bytes="2" />
     <valueparam value-mask-type="CARD16"
+                value-mask-mask="ConfigWindow"
                 value-mask-name="value_mask"
                 value-list-name="value_list" />
     <doc>
@@ -3884,6 +3887,7 @@ TODO
     <field type="GCONTEXT" name="cid" />
     <field type="DRAWABLE" name="drawable" />
     <valueparam value-mask-type="CARD32"
+                value-mask-mask="GC"
                 value-mask-name="value_mask"
                 value-list-name="value_list" />
     <doc>
@@ -3925,6 +3929,7 @@ The X server could not allocate the requested resources (no memory?).
     <pad bytes="1" />
     <field type="GCONTEXT" name="gc" />
     <valueparam value-mask-type="CARD32"
+                value-mask-mask="GC"
                 value-mask-name="value_mask"
                 value-list-name="value_list" />
     <doc>
@@ -4983,6 +4988,7 @@ sensitive!
   <request name="ChangeKeyboardControl" opcode="102">
     <pad bytes="1" />
     <valueparam value-mask-type="CARD32"
+                value-mask-mask="KB"
                 value-mask-name="value_mask"
                 value-list-name="value_list" />
   </request>
