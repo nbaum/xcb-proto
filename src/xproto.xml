@@ -1285,7 +1285,7 @@ parent's cursor will cause an immediate change in the displayed cursor.
   <request name="CreateWindow" opcode="1">
     <field type="CARD8" name="depth" />
     <field type="WINDOW" name="wid" />
-    <field type="WINDOW" name="parent" />
+    <field type="WINDOW" name="parent" self="true"/>
     <field type="INT16" name="x" />
     <field type="INT16" name="y" />
     <field type="CARD16" name="width" />
@@ -1374,7 +1374,7 @@ The X server could not allocate the requested resources (no memory?).
 
   <request name="ChangeWindowAttributes" opcode="2">
     <pad bytes="1" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <valueparam value-mask-type="CARD32"
                 value-mask-mask="CW"
                 value-mask-name="value_mask"
@@ -1426,7 +1426,7 @@ The specified `window` does not exist.
 
   <request name="GetWindowAttributes" opcode="3">
     <pad bytes="1" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <reply>
       <field type="CARD8" name="backing_store" enum="BackingStore" />
       <field type="VISUALID" name="visual" />
@@ -1498,7 +1498,7 @@ TODO: reasons?
 
   <request name="DestroyWindow" opcode="4">
     <pad bytes="1" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <doc>
       <brief>Destroys a window</brief>
       <description><![CDATA[
@@ -1521,7 +1521,7 @@ The specified window does not exist.
 
   <request name="DestroySubwindows" opcode="5">
     <pad bytes="1" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
   </request>
   
   <enum name="SetMode">
@@ -1531,7 +1531,7 @@ The specified window does not exist.
 
   <request name="ChangeSaveSet" opcode="6">
     <field type="BYTE" name="mode" enum="SetMode" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <doc>
       <brief>Changes a client's save set</brief>
       <description><![CDATA[
@@ -1558,7 +1558,7 @@ The specified window does not exist.
 
   <request name="ReparentWindow" opcode="7">
     <pad bytes="1" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <field type="WINDOW" name="parent" />
     <field type="INT16" name="x" />
     <field type="INT16" name="y" />
@@ -1600,7 +1600,7 @@ The specified window does not exist.
 
   <request name="MapWindow" opcode="8">
     <pad bytes="1" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <doc>
       <brief>Makes a window visible</brief>
       <description><![CDATA[
@@ -1638,12 +1638,12 @@ The specified window does not exist.
 
   <request name="MapSubwindows" opcode="9">
     <pad bytes="1" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
   </request>
 
   <request name="UnmapWindow" opcode="10">
     <pad bytes="1" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <doc>
       <brief>Makes a window invisible</brief>
       <description><![CDATA[
@@ -1667,7 +1667,7 @@ The specified window does not exist.
 
   <request name="UnmapSubwindows" opcode="11">
     <pad bytes="1" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
   </request>
   
   <enum name="ConfigWindow">
@@ -1690,7 +1690,7 @@ The specified window does not exist.
 
   <request name="ConfigureWindow" opcode="12">
     <pad bytes="1" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <field type="CARD16" name="value_mask" />
     <pad bytes="2" />
     <valueparam value-mask-type="CARD16"
@@ -1755,7 +1755,7 @@ TODO: reasons?
 
   <request name="CirculateWindow" opcode="13">
     <field type="CARD8" name="direction" enum="Circulate" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <doc>
       <brief>Change window stacking order</brief>
       <description><![CDATA[
@@ -1781,7 +1781,7 @@ The specified `direction` is invalid.
 
   <request name="GetGeometry" opcode="14">
     <pad bytes="1" />
-    <field type="DRAWABLE" name="drawable" />
+    <field type="DRAWABLE" name="drawable" self="true" />
     <reply>
       <field type="CARD8" name="depth" />
       <field type="WINDOW" name="root" />
@@ -1856,7 +1856,7 @@ TODO: reasons?
 
   <request name="QueryTree" opcode="15">
     <pad bytes="1" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <reply>
       <pad bytes="1" />
       <field type="WINDOW" name="root" />
@@ -1975,7 +1975,7 @@ A value other than 0 or 1 was specified for `only_if_exists`.
 
   <request name="GetAtomName" opcode="17">
     <pad bytes="1" />
-    <field type="ATOM" name="atom" />
+    <field type="ATOM" name="atom" self="true" />
     <reply>
       <pad bytes="1" />
       <field type="CARD16" name="name_len" />
@@ -2009,7 +2009,7 @@ defined with the correct type and format with zero-length data.
 
   <request name="ChangeProperty" opcode="18">
     <field type="CARD8" name="mode" enum="PropMode" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <field type="ATOM" name="property" />
     <field type="ATOM" name="type" />
     <field type="CARD8" name="format" />
@@ -2093,7 +2093,7 @@ The X server could not store the property (no memory?).
 
   <request name="DeleteProperty" opcode="19">
     <pad bytes="1" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <field type="ATOM" name="property" />
   </request>
   
@@ -2103,7 +2103,7 @@ The X server could not store the property (no memory?).
 
   <request name="GetProperty" opcode="20">
     <field type="BOOL" name="delete" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <field type="ATOM" name="property" />
     <field type="ATOM" name="type" altenum="GetPropertyType" />
     <field type="CARD32" name="long_offset" />
@@ -2223,7 +2223,7 @@ resulting in a byte offset of 4).
 
   <request name="ListProperties" opcode="21">
     <pad bytes="1" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <reply>
       <pad bytes="1" />
       <field type="CARD16" name="atoms_len" />
@@ -2236,7 +2236,7 @@ resulting in a byte offset of 4).
 
   <request name="SetSelectionOwner" opcode="22">
     <pad bytes="1" />
-    <field type="WINDOW" name="owner" altenum="Window" />
+    <field type="WINDOW" name="owner" altenum="Window" self="true" />
     <field type="ATOM" name="selection" />
     <field type="TIMESTAMP" name="time" altenum="Time" />
     <doc>
@@ -2275,7 +2275,7 @@ time.
 
   <request name="GetSelectionOwner" opcode="23">
     <pad bytes="1" />
-    <field type="ATOM" name="selection" />
+    <field type="ATOM" name="selection" self="true" />
     <reply>
       <pad bytes="1" />
       <field type="WINDOW" name="owner" altenum="Window" />
@@ -2305,7 +2305,7 @@ The selection.
   <request name="ConvertSelection" opcode="24">
     <pad bytes="1" />
     <field type="WINDOW" name="requestor" />
-    <field type="ATOM" name="selection" />
+    <field type="ATOM" name="selection" self="true" />
     <field type="ATOM" name="target" />
     <field type="ATOM" name="property" altenum="Atom" />
     <field type="TIMESTAMP" name="time" altenum="Time" />
@@ -2318,7 +2318,7 @@ The selection.
 
   <request name="SendEvent" opcode="25">
     <field type="BOOL" name="propagate" />
-    <field type="WINDOW" name="destination" altenum="SendEventDest" />
+    <field type="WINDOW" name="destination" altenum="SendEventDest" self="true" />
     <field type="CARD32" name="event_mask" mask="EventMask" />
     <list type="char" name="event"><value>32</value></list>
     <doc>
@@ -2583,7 +2583,7 @@ Scroll wheel. TODO: direction?
 
   <request name="GrabButton" opcode="28">
     <field type="BOOL" name="owner_events" />
-    <field type="WINDOW" name="grab_window" />
+    <field type="WINDOW" name="grab_window" self="true" />
     <field type="CARD16" name="event_mask" mask="EventMask" />
     <field type="CARD8" name="pointer_mode" enum="GrabMode" />
     <field type="CARD8" name="keyboard_mode" enum="GrabMode" />
@@ -2682,7 +2682,7 @@ The specified `window` does not exist.
 
   <request name="UngrabButton" opcode="29">
     <field type="CARD8" name="button" enum="ButtonIndex" />
-    <field type="WINDOW" name="grab_window" />
+    <field type="WINDOW" name="grab_window" self="true" />
     <field type="CARD16" name="modifiers" mask="ModMask" />
     <pad bytes="2" />
   </request>
@@ -2783,7 +2783,7 @@ The specified `window` does not exist.
 
   <request name="GrabKey" opcode="33">
     <field type="BOOL" name="owner_events" />
-    <field type="WINDOW" name="grab_window" />
+    <field type="WINDOW" name="grab_window" self="true" />
     <field type="CARD16" name="modifiers" mask="ModMask" />
     <field type="KEYCODE" name="key" altenum="Grab" />
     <field type="CARD8" name="pointer_mode" enum="GrabMode" />
@@ -2865,7 +2865,7 @@ The specified `window` does not exist.
 
   <request name="UngrabKey" opcode="34">
     <field type="KEYCODE" name="key" altenum="Grab" />
-    <field type="WINDOW" name="grab_window" />
+    <field type="WINDOW" name="grab_window" self="true" />
     <field type="CARD16" name="modifiers" mask="ModMask" />
     <pad bytes="2" />
     <doc>
@@ -3016,7 +3016,7 @@ You specified an invalid `mode`.
 
   <request name="QueryPointer" opcode="38">
     <pad bytes="1" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <reply>
       <field type="BOOL" name="same_screen" />
       <field type="WINDOW" name="root" />
@@ -3087,7 +3087,7 @@ The specified `window` does not exist.
 
   <request name="GetMotionEvents" opcode="39">
     <pad bytes="1" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <field type="TIMESTAMP" name="start" altenum="Time" />
     <field type="TIMESTAMP" name="stop" altenum="Time" />
     <reply>
@@ -3592,7 +3592,7 @@ The maximum number of fonts to be returned.
 
   <request name="CreatePixmap" opcode="53">
     <field type="CARD8" name="depth" />
-    <field type="PIXMAP" name="pid" />
+    <field type="PIXMAP" name="pid" create="true" />
     <field type="DRAWABLE" name="drawable" />
     <field type="CARD16" name="width" />
     <field type="CARD16" name="height" />
@@ -3885,7 +3885,7 @@ TODO
   <request name="CreateGC" opcode="55">
     <pad bytes="1" />
     <field type="GCONTEXT" name="cid" />
-    <field type="DRAWABLE" name="drawable" />
+    <field type="DRAWABLE" name="drawable" self="true" />
     <valueparam value-mask-type="CARD32"
                 value-mask-mask="GC"
                 value-mask-name="value_mask"
@@ -3992,14 +3992,14 @@ The X server could not allocate the requested resources (no memory?).
 
   <request name="CopyGC" opcode="57">
     <pad bytes="1" />
-    <field type="GCONTEXT" name="src_gc" />
+    <field type="GCONTEXT" name="src_gc" self="true" />
     <field type="GCONTEXT" name="dst_gc" />
     <field type="CARD32" name="value_mask" mask="GC" />
   </request>
 
   <request name="SetDashes" opcode="58">
     <pad bytes="1" />
-    <field type="GCONTEXT" name="gc" />
+    <field type="GCONTEXT" name="gc" self="true" />
     <field type="CARD16" name="dash_offset" />
     <field type="CARD16" name="dashes_len" />
     <list type="CARD8" name="dashes">
@@ -4016,7 +4016,7 @@ The X server could not allocate the requested resources (no memory?).
 
   <request name="SetClipRectangles" opcode="59">
     <field type="BYTE" name="ordering" enum="ClipOrdering" />
-    <field type="GCONTEXT" name="gc" />
+    <field type="GCONTEXT" name="gc" self="true" />
     <field type="INT16" name="clip_x_origin" />
     <field type="INT16" name="clip_y_origin" />
     <list type="RECTANGLE" name="rectangles" />
@@ -4024,7 +4024,7 @@ The X server could not allocate the requested resources (no memory?).
 
   <request name="FreeGC" opcode="60">
     <pad bytes="1" />
-    <field type="GCONTEXT" name="gc" />
+    <field type="GCONTEXT" name="gc" self="true" />
     <doc>
       <brief>Destroys a graphics context</brief>
       <description><![CDATA[
@@ -4039,7 +4039,7 @@ The specified graphics context does not exist.
 
   <request name="ClearArea" opcode="61">
     <field type="BOOL" name="exposures" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <field type="INT16" name="x" />
     <field type="INT16" name="y" />
     <field type="CARD16" name="width" />
@@ -4049,7 +4049,7 @@ The specified graphics context does not exist.
   <request name="CopyArea" opcode="62">
     <pad bytes="1" />
     <field type="DRAWABLE" name="src_drawable" />
-    <field type="DRAWABLE" name="dst_drawable" />
+    <field type="DRAWABLE" name="dst_drawable" self="true" />
     <field type="GCONTEXT" name="gc" />
     <field type="INT16" name="src_x" />
     <field type="INT16" name="src_y" />
@@ -4104,7 +4104,7 @@ The specified graphics context does not exist.
   <request name="CopyPlane" opcode="63">
     <pad bytes="1" />
     <field type="DRAWABLE" name="src_drawable" />
-    <field type="DRAWABLE" name="dst_drawable" />
+    <field type="DRAWABLE" name="dst_drawable" self="true" />
     <field type="GCONTEXT" name="gc" />
     <field type="INT16" name="src_x" />
     <field type="INT16" name="src_y" />
@@ -4131,14 +4131,14 @@ Treats all coordinates after the first as relative to the previous coordinate.
   <!-- combine-adjacent doesn't work for mode==Relative -->
   <request name="PolyPoint" opcode="64">
     <field type="BYTE" name="coordinate_mode" enum="CoordMode" />
-    <field type="DRAWABLE" name="drawable" />
+    <field type="DRAWABLE" name="drawable" self="true" />
     <field type="GCONTEXT" name="gc" />
     <list type="POINT" name="points" />
   </request>
 
   <request name="PolyLine" opcode="65" combine-adjacent="true">
     <field type="BYTE" name="coordinate_mode" enum="CoordMode" />
-    <field type="DRAWABLE" name="drawable" />
+    <field type="DRAWABLE" name="drawable" self="true" />
     <field type="GCONTEXT" name="gc" />
     <list type="POINT" name="points" />
     <doc>
@@ -4202,7 +4202,7 @@ TODO: reasons?
 
   <request name="PolySegment" opcode="66" combine-adjacent="true">
     <pad bytes="1" />
-    <field type="DRAWABLE" name="drawable" />
+    <field type="DRAWABLE" name="drawable" self="true" />
     <field type="GCONTEXT" name="gc" />
     <list type="SEGMENT" name="segments" />
     <doc>
@@ -4246,7 +4246,7 @@ TODO: reasons?
 
   <request name="PolyRectangle" opcode="67" combine-adjacent="true">
     <pad bytes="1" />
-    <field type="DRAWABLE" name="drawable" />
+    <field type="DRAWABLE" name="drawable" self="true" />
     <field type="GCONTEXT" name="gc" />
     <list type="RECTANGLE" name="rectangles" />
   </request>
@@ -4258,7 +4258,7 @@ TODO: reasons?
   -->
   <request name="PolyArc" opcode="68">
     <pad bytes="1" />
-    <field type="DRAWABLE" name="drawable" />
+    <field type="DRAWABLE" name="drawable" self="true" />
     <field type="GCONTEXT" name="gc" />
     <list type="ARC" name="arcs" />
   </request>
@@ -4271,7 +4271,7 @@ TODO: reasons?
 
   <request name="FillPoly" opcode="69">
     <pad bytes="1" />
-    <field type="DRAWABLE" name="drawable" />
+    <field type="DRAWABLE" name="drawable" self="true" />
     <field type="GCONTEXT" name="gc" />
     <field type="CARD8" name="shape" enum="PolyShape" />
     <field type="CARD8" name="coordinate_mode" enum="CoordMode" />
@@ -4281,7 +4281,7 @@ TODO: reasons?
 
   <request name="PolyFillRectangle" opcode="70" combine-adjacent="true">
     <pad bytes="1" />
-    <field type="DRAWABLE" name="drawable" />
+    <field type="DRAWABLE" name="drawable" self="true" />
     <field type="GCONTEXT" name="gc" />
     <list type="RECTANGLE" name="rectangles" />
     <doc>
@@ -4324,7 +4324,7 @@ TODO: reasons?
 
   <request name="PolyFillArc" opcode="71" combine-adjacent="true">
     <pad bytes="1" />
-    <field type="DRAWABLE" name="drawable" />
+    <field type="DRAWABLE" name="drawable" self="true" />
     <field type="GCONTEXT" name="gc" />
     <list type="ARC" name="arcs" />
   </request>
@@ -4337,7 +4337,7 @@ TODO: reasons?
 
   <request name="PutImage" opcode="72">
     <field type="CARD8" name="format" enum="ImageFormat" />
-    <field type="DRAWABLE" name="drawable" />
+    <field type="DRAWABLE" name="drawable" self="true" />
     <field type="GCONTEXT" name="gc" />
     <field type="CARD16" name="width" />
     <field type="CARD16" name="height" />
@@ -4352,7 +4352,7 @@ TODO: reasons?
   <!-- FIXME: data array in reply will include padding, but ought not to. -->
   <request name="GetImage" opcode="73">
     <field type="CARD8" name="format" enum="ImageFormat" />
-    <field type="DRAWABLE" name="drawable" />
+    <field type="DRAWABLE" name="drawable" self="true" />
     <field type="INT16" name="x" />
     <field type="INT16" name="y" />
     <field type="CARD16" name="width" />
@@ -4373,7 +4373,7 @@ TODO: reasons?
 
   <request name="PolyText8" opcode="74">
     <pad bytes="1" />
-    <field type="DRAWABLE" name="drawable" />
+    <field type="DRAWABLE" name="drawable" self="true" />
     <field type="GCONTEXT" name="gc" />
     <field type="INT16" name="x" />
     <field type="INT16" name="y" />
@@ -4382,7 +4382,7 @@ TODO: reasons?
 
   <request name="PolyText16" opcode="75">
     <pad bytes="1" />
-    <field type="DRAWABLE" name="drawable" />
+    <field type="DRAWABLE" name="drawable" self="true" />
     <field type="GCONTEXT" name="gc" />
     <field type="INT16" name="x" />
     <field type="INT16" name="y" />
@@ -4391,7 +4391,7 @@ TODO: reasons?
 
   <request name="ImageText8" opcode="76">
     <field type="BYTE" name="string_len" />
-    <field type="DRAWABLE" name="drawable" />
+    <field type="DRAWABLE" name="drawable" self="true" />
     <field type="GCONTEXT" name="gc" />
     <field type="INT16" name="x" />
     <field type="INT16" name="y" />
@@ -4448,7 +4448,7 @@ TODO: reasons?
 
   <request name="ImageText16" opcode="77">
     <field type="BYTE" name="string_len" />
-    <field type="DRAWABLE" name="drawable" />
+    <field type="DRAWABLE" name="drawable" self="true" />
     <field type="GCONTEXT" name="gc" />
     <field type="INT16" name="x" />
     <field type="INT16" name="y" />
@@ -4511,35 +4511,35 @@ TODO: reasons?
 
   <request name="CreateColormap" opcode="78">
     <field type="BYTE" name="alloc" enum="ColormapAlloc" />
-    <field type="COLORMAP" name="mid" />
-    <field type="WINDOW" name="window" />
+    <field type="COLORMAP" name="mid" create="true" />
+    <field type="WINDOW" name="window" self="true" />
     <field type="VISUALID" name="visual" />
   </request>
 
   <request name="FreeColormap" opcode="79">
     <pad bytes="1" />
-    <field type="COLORMAP" name="cmap" />
+    <field type="COLORMAP" name="cmap" self="true" />
   </request>
 
   <request name="CopyColormapAndFree" opcode="80">
     <pad bytes="1" />
-    <field type="COLORMAP" name="mid" />
+    <field type="COLORMAP" name="mid" self="true" />
     <field type="COLORMAP" name="src_cmap" />
   </request>
 
   <request name="InstallColormap" opcode="81">
     <pad bytes="1" />
-    <field type="COLORMAP" name="cmap" />
+    <field type="COLORMAP" name="cmap" self="true" />
   </request>
 
   <request name="UninstallColormap" opcode="82">
     <pad bytes="1" />
-    <field type="COLORMAP" name="cmap" />
+    <field type="COLORMAP" name="cmap" self="true" />
   </request>
 
   <request name="ListInstalledColormaps" opcode="83">
     <pad bytes="1" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <reply>
       <pad bytes="1" />
       <field type="CARD16" name="cmaps_len" />
@@ -4594,7 +4594,7 @@ The specified colormap `cmap` does not exist.
 
   <request name="AllocNamedColor" opcode="85">
     <pad bytes="1" />
-    <field type="COLORMAP" name="cmap" />
+    <field type="COLORMAP" name="cmap" self="true" />
     <field type="CARD16" name="name_len" />
     <pad bytes="2" />
     <list type="char" name="name">
@@ -4614,7 +4614,7 @@ The specified colormap `cmap` does not exist.
 
   <request name="AllocColorCells" opcode="86">
     <field type="BOOL" name="contiguous" />
-    <field type="COLORMAP" name="cmap" />
+    <field type="COLORMAP" name="cmap" self="true" />
     <field type="CARD16" name="colors" />
     <field type="CARD16" name="planes" />
     <reply>
@@ -4633,7 +4633,7 @@ The specified colormap `cmap` does not exist.
 
   <request name="AllocColorPlanes" opcode="87">
     <field type="BOOL" name="contiguous" />
-    <field type="COLORMAP" name="cmap" />
+    <field type="COLORMAP" name="cmap" self="true" />
     <field type="CARD16" name="colors" />
     <field type="CARD16" name="reds" />
     <field type="CARD16" name="greens" />
@@ -4654,7 +4654,7 @@ The specified colormap `cmap` does not exist.
 
   <request name="FreeColors" opcode="88">
     <pad bytes="1" />
-    <field type="COLORMAP" name="cmap" />
+    <field type="COLORMAP" name="cmap" self="true" />
     <field type="CARD32" name="plane_mask" />
     <list type="CARD32" name="pixels" />
   </request>
@@ -4676,13 +4676,13 @@ The specified colormap `cmap` does not exist.
   
   <request name="StoreColors" opcode="89" combine-adjacent="true">
     <pad bytes="1" />
-    <field type="COLORMAP" name="cmap" />
+    <field type="COLORMAP" name="cmap" self="true" />
     <list type="COLORITEM" name="items" />
   </request>
 
   <request name="StoreNamedColor" opcode="90">
     <field type="CARD8" name="flags" mask="ColorFlag" />
-    <field type="COLORMAP" name="cmap" />
+    <field type="COLORMAP" name="cmap" self="true" />
     <field type="CARD32" name="pixel" />
     <field type="CARD16" name="name_len" />
     <pad bytes="2" />
@@ -4700,7 +4700,7 @@ The specified colormap `cmap` does not exist.
 
   <request name="QueryColors" opcode="91">
     <pad bytes="1" />
-    <field type="COLORMAP" name="cmap" />
+    <field type="COLORMAP" name="cmap" self="true" />
     <list type="CARD32" name="pixels" />
     <reply>
       <pad bytes="1" />
@@ -4714,7 +4714,7 @@ The specified colormap `cmap` does not exist.
 
   <request name="LookupColor" opcode="92">
     <pad bytes="1" />
-    <field type="COLORMAP" name="cmap" />
+    <field type="COLORMAP" name="cmap" self="true" />
     <field type="CARD16" name="name_len" />
     <pad bytes="2" />
     <list type="char" name="name">
@@ -4847,7 +4847,7 @@ The specified cursor does not exist.
 
   <request name="RecolorCursor" opcode="96">
     <pad bytes="1" />
-    <field type="CURSOR" name="cursor" />
+    <field type="CURSOR" name="cursor" self="true" />
     <field type="CARD16" name="fore_red" />
     <field type="CARD16" name="fore_green" />
     <field type="CARD16" name="fore_blue" />
@@ -4864,7 +4864,7 @@ The specified cursor does not exist.
 
   <request name="QueryBestSize" opcode="97">
     <field type="CARD8" name="class" enum="QueryShapeOf" />
-    <field type="DRAWABLE" name="drawable" />
+    <field type="DRAWABLE" name="drawable" self="true" />
     <field type="CARD16" name="width" />
     <field type="CARD16" name="height" />
     <reply>
@@ -5155,7 +5155,7 @@ The specified `resource` does not exist.
 
   <request name="RotateProperties" opcode="114">
     <pad bytes="1" />
-    <field type="WINDOW" name="window" />
+    <field type="WINDOW" name="window" self="true" />
     <field type="CARD16" name="atoms_len" />
     <field type="INT16" name="delta" />
     <list type="ATOM" name="atoms">

@@ -95,7 +95,7 @@ authorization from the authors.
 	BEWARE: the docs lie!
 	-->
 	<request name="SetScreenConfig" opcode="2">
-		<field type="WINDOW" name="window" />
+		<field type="WINDOW" name="window" self="true" />
 		<field type="TIMESTAMP" name="timestamp" />
 		<field type="TIMESTAMP" name="config_timestamp" />
 		<field type="CARD16" name="sizeID" />
@@ -127,7 +127,7 @@ authorization from the authors.
 	</enum>
 
 	<request name="SelectInput" opcode="4">	
-		<field type="WINDOW" name="window" />
+		<field type="WINDOW" name="window" self="true" />
 		<field type="CARD16" name="enable" mask="NotifyMask" />
 		<pad bytes="2" />
 	</request>
@@ -136,7 +136,7 @@ authorization from the authors.
 	I think this is correct.  It works. though I believe nInfo is a bit high...
 	-->
 	<request name="GetScreenInfo" opcode="5">
-		<field type="WINDOW" name="window" />
+		<field type="WINDOW" name="window" self="true" />
 		<reply>
 			<field type="CARD8" name="rotations" mask="Rotation" />
 			<field type="WINDOW" name="root" />
@@ -163,7 +163,7 @@ authorization from the authors.
 	<!-- new in version 1.2 -->
 
 	<request name="GetScreenSizeRange" opcode="6">
-		<field type="WINDOW" name="window" />
+		<field type="WINDOW" name="window" self="true" />
 		<reply>
 			<pad bytes="1" />
 			<field type="CARD16" name="min_width" />
@@ -175,7 +175,7 @@ authorization from the authors.
 	</request>
 
 	<request name="SetScreenSize" opcode="7">
-		<field type="WINDOW" name="window" />
+		<field type="WINDOW" name="window" self="true" />
 		<field type="CARD16" name="width" />    <!-- pixels -->
 		<field type="CARD16" name="height" />
 		<field type="CARD32" name="mm_width" />  <!-- millimeters -->
@@ -218,7 +218,7 @@ authorization from the authors.
 	</struct>
 
 	<request name="GetScreenResources" opcode="8">
-		<field type="WINDOW" name="window" />
+		<field type="WINDOW" name="window" self="true" />
 		<reply>
 			<pad bytes="1" />
 			<field type="TIMESTAMP" name="timestamp" />
@@ -254,7 +254,7 @@ authorization from the authors.
 	</enum>
 
 	<request name="GetOutputInfo" opcode="9">
-		<field type="OUTPUT" name="output" />
+		<field type="OUTPUT" name="output" self="true" />
 		<field type="TIMESTAMP" name="config_timestamp" />
 		<reply>
 			<field type="CARD8" name="status" enum="SetConfig" />
@@ -285,7 +285,7 @@ authorization from the authors.
 	</request>
 
 	<request name="ListOutputProperties" opcode="10">
-		<field type="OUTPUT" name="output" />
+		<field type="OUTPUT" name="output" self="true" />
 		<reply>
 			<pad bytes="1" />
 			<field type="CARD16" name="num_atoms" />
@@ -297,7 +297,7 @@ authorization from the authors.
 	</request>
 
 	<request name="QueryOutputProperty" opcode="11">
-		<field type="OUTPUT" name="output" />
+		<field type="OUTPUT" name="output" self="true" />
 		<field type="ATOM" name="property" />
 		<reply>
 			<pad bytes="1" />
@@ -312,7 +312,7 @@ authorization from the authors.
 	</request>
 
 	<request name="ConfigureOutputProperty" opcode="12">
-		<field type="OUTPUT" name="output" />
+		<field type="OUTPUT" name="output" self="true" />
 		<field type="ATOM" name="property" />
 		<field type="BOOL" name="pending" />
 		<field type="BOOL" name="range" />
@@ -321,7 +321,7 @@ authorization from the authors.
 	</request>
 
 	<request name="ChangeOutputProperty" opcode="13">
-		<field type="OUTPUT" name="output" />
+		<field type="OUTPUT" name="output" self="true" />
 		<field type="ATOM" name="property" />
 		<field type="ATOM" name="type" />
 		<field type="CARD8" name="format" />
@@ -340,13 +340,13 @@ authorization from the authors.
 	</request>
 
 	<request name="DeleteOutputProperty" opcode="14">
-		<field type="OUTPUT" name="output" />
+		<field type="OUTPUT" name="output" self="true" />
 		<field type="ATOM" name="property" />
 	</request>
 
 	<!-- NOTE: num_items depends on format (8/16/32) -->
 	<request name="GetOutputProperty" opcode="15">
-		<field type="OUTPUT" name="output" />
+		<field type="OUTPUT" name="output" self="true" />
 		<field type="ATOM" name="property" />
 		<field type="ATOM" name="type" altenum="GetPropertyType" />
 		<field type="CARD32" name="long_offset" />
@@ -374,7 +374,7 @@ authorization from the authors.
 	</request>
 
 	<request name="CreateMode" opcode="16">
-		<field type="WINDOW" name="window" />
+		<field type="WINDOW" name="window" self="true" />
 		<field type="ModeInfo" name="mode_info" />
 		<list type="char" name="name" />
 		<reply>
@@ -385,21 +385,21 @@ authorization from the authors.
 	</request>
 
 	<request name="DestroyMode" opcode="17">
-		<field type="MODE" name="mode" />
+		<field type="MODE" name="mode" self="true" />
 	</request>
 
 	<request name="AddOutputMode" opcode="18">
-		<field type="OUTPUT" name="output" />
+		<field type="OUTPUT" name="output" self="true" />
 		<field type="MODE" name="mode" />
 	</request>
 
 	<request name="DeleteOutputMode" opcode="19">
-		<field type="OUTPUT" name="output" />
+		<field type="OUTPUT" name="output" self="true" />
 		<field type="MODE" name="mode" />
 	</request>
 
 	<request name="GetCrtcInfo" opcode="20">
-		<field type="CRTC" name="crtc" />
+		<field type="CRTC" name="crtc" self="true" />
 		<field type="TIMESTAMP" name="config_timestamp" />
 		<reply>
 			<field type="CARD8" name="status" enum="SetConfig" />
@@ -423,7 +423,7 @@ authorization from the authors.
 	</request>
 
 	<request name="SetCrtcConfig" opcode="21">
-		<field type="CRTC" name="crtc" />
+		<field type="CRTC" name="crtc" self="true" />
 		<field type="TIMESTAMP" name="timestamp" />
 		<field type="TIMESTAMP" name="config_timestamp" />
 		<field type="INT16" name="x" />
@@ -440,7 +440,7 @@ authorization from the authors.
 	</request>
 
 	<request name="GetCrtcGammaSize" opcode="22">
-		<field type="CRTC" name="crtc" />
+		<field type="CRTC" name="crtc" self="true" />
 		<reply>
 			<pad bytes="1" />
 			<field type="CARD16" name="size" />
@@ -449,7 +449,7 @@ authorization from the authors.
 	</request>
 
 	<request name="GetCrtcGamma" opcode="23">
-		<field type="CRTC" name="crtc" />
+		<field type="CRTC" name="crtc" self="true" />
 		<reply>
 			<pad bytes="1" />
 			<field type="CARD16" name="size" />
@@ -467,7 +467,7 @@ authorization from the authors.
 	</request>
 
 	<request name="SetCrtcGamma" opcode="24">
-		<field type="CRTC" name="crtc" />
+		<field type="CRTC" name="crtc" self="true" />
 		<field type="CARD16" name="size" />
 		<pad bytes="2"/>
 		<list type="CARD16" name="red">
@@ -484,7 +484,7 @@ authorization from the authors.
 	<!-- new in 1.3 -->
 
 	<request name="GetScreenResourcesCurrent" opcode="25">
-		<field type="WINDOW" name="window" />
+		<field type="WINDOW" name="window" self="true" />
 		<reply>
 			<pad bytes="1" />
 			<field type="TIMESTAMP" name="timestamp" />
@@ -521,7 +521,7 @@ authorization from the authors.
 	</enum>
 
 	<request name="SetCrtcTransform" opcode="26">
-		<field type="CRTC" name="crtc" />
+		<field type="CRTC" name="crtc" self="true" />
 		<field type="TRANSFORM" name="transform" />
 		<field type="CARD16" name="filter_len" />
 		<pad bytes="2" />
@@ -532,7 +532,7 @@ authorization from the authors.
 	</request>
 
 	<request name="GetCrtcTransform" opcode="27">
-		<field type="CRTC" name="crtc" />
+		<field type="CRTC" name="crtc" self="true" />
 		<reply>
 			<pad bytes="1" />
 			<field type="TRANSFORM" name="pending_transform" />
@@ -560,7 +560,7 @@ authorization from the authors.
 	</request>
 
 	<request name="GetPanning" opcode="28">
-		<field type="CRTC" name="crtc" />
+		<field type="CRTC" name="crtc" self="true" />
 		<reply>
 			<field type="CARD8" name="status" enum="SetConfig" />
 			<field type="TIMESTAMP" name="timestamp" />
@@ -580,7 +580,7 @@ authorization from the authors.
 	</request>
 
 	<request name="SetPanning" opcode="29">
-		<field type="CRTC" name="crtc" />
+		<field type="CRTC" name="crtc" self="true" />
 		<field type="TIMESTAMP" name="timestamp" />
 		<field type="CARD16" name="left" />
 		<field type="CARD16" name="top" />
@@ -601,12 +601,12 @@ authorization from the authors.
 	</request>
 
 	<request name="SetOutputPrimary" opcode="30">
-		<field type="WINDOW" name="window" />
+		<field type="WINDOW" name="window" self="true" />
 		<field type="OUTPUT" name="output" />
 	</request>
 
 	<request name="GetOutputPrimary" opcode="31">
-		<field type="WINDOW" name="window" />
+		<field type="WINDOW" name="window" self="true" />
 		<reply>
 			<pad bytes="1" />
 			<field type="OUTPUT" name="output" />
@@ -616,7 +616,7 @@ authorization from the authors.
 	<!-- New in version 1.4 -->
 
 	<request name="GetProviders" opcode="32">
-		<field type="WINDOW" name="window" />
+		<field type="WINDOW" name="window" self="true" />
 		<reply>
 			<pad bytes="1" />
 			<field type="TIMESTAMP" name="timestamp" />
@@ -636,7 +636,7 @@ authorization from the authors.
 	</enum>
 
 	<request name="GetProviderInfo" opcode="33">
-		<field type="PROVIDER" name="provider" />
+		<field type="PROVIDER" name="provider" self="true" />
 		<field type="TIMESTAMP" name="config_timestamp" />
 		<reply>
 			<field type="CARD8" name="status" />
@@ -671,19 +671,19 @@ authorization from the authors.
 	</request>
 
 	<request name="SetProviderOffloadSink" opcode="34">
-		<field type="PROVIDER" name="provider" />
+		<field type="PROVIDER" name="provider" self="true" />
 		<field type="PROVIDER" name="sink_provider" />
 		<field type="TIMESTAMP" name="config_timestamp" />
 	</request>
 
 	<request name="SetProviderOutputSource" opcode="35">
-		<field type="PROVIDER" name="provider" />
+		<field type="PROVIDER" name="provider" self="true" />
 		<field type="PROVIDER" name="source_provider" />
 		<field type="TIMESTAMP" name="config_timestamp" />
 	</request>
 
 	<request name="ListProviderProperties" opcode="36">
-		<field type="PROVIDER" name="provider" />
+		<field type="PROVIDER" name="provider" self="true" />
 		<reply>
 			<pad bytes="1" />
 			<field type="CARD16" name="num_atoms" />
@@ -695,7 +695,7 @@ authorization from the authors.
 	</request>
 
 	<request name="QueryProviderProperty" opcode="37">
-		<field type="PROVIDER" name="provider" />
+		<field type="PROVIDER" name="provider" self="true" />
 		<field type="ATOM" name="property" />
 		<reply>
 			<pad bytes="1" />
@@ -710,7 +710,7 @@ authorization from the authors.
 	</request>
 
 	<request name="ConfigureProviderProperty" opcode="38">
-		<field type="PROVIDER" name="provider" />
+		<field type="PROVIDER" name="provider" self="true" />
 		<field type="ATOM" name="property" />
 		<field type="BOOL" name="pending" />
 		<field type="BOOL" name="range" />
@@ -719,7 +719,7 @@ authorization from the authors.
 	</request>
 
 	<request name="ChangeProviderProperty" opcode="39">
-		<field type="PROVIDER" name="provider" />
+		<field type="PROVIDER" name="provider" self="true" />
 		<field type="ATOM" name="property" />
 		<field type="ATOM" name="type" />
 		<field type="CARD8" name="format" />
@@ -738,12 +738,12 @@ authorization from the authors.
 	</request>
 
 	<request name="DeleteProviderProperty" opcode="40">
-		<field type="PROVIDER" name="provider" />
+		<field type="PROVIDER" name="provider" self="true" />
 		<field type="ATOM" name="property" />
 	</request>
 
 	<request name="GetProviderProperty" opcode="41">
-		<field type="PROVIDER" name="provider" />
+		<field type="PROVIDER" name="provider" self="true" />
 		<field type="ATOM" name="property" />
 		<field type="ATOM" name="type" /> <!-- AnyProperty -->
 		<field type="CARD32" name="long_offset" />
