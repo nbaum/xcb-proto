@@ -1284,7 +1284,7 @@ parent's cursor will cause an immediate change in the displayed cursor.
 
   <request name="CreateWindow" opcode="1">
     <field type="CARD8" name="depth" />
-    <field type="WINDOW" name="wid" />
+    <field type="WINDOW" name="wid" create="true" />
     <field type="WINDOW" name="parent" self="true"/>
     <field type="INT16" name="x" />
     <field type="INT16" name="y" />
@@ -3884,7 +3884,7 @@ TODO
 
   <request name="CreateGC" opcode="55">
     <pad bytes="1" />
-    <field type="GCONTEXT" name="cid" />
+    <field type="GCONTEXT" name="cid" create="true" />
     <field type="DRAWABLE" name="drawable" self="true" />
     <valueparam value-mask-type="CARD32"
                 value-mask-mask="GC"
@@ -4552,7 +4552,7 @@ TODO: reasons?
 
   <request name="AllocColor" opcode="84">
     <pad bytes="1" />
-    <field type="COLORMAP" name="cmap" />
+    <field type="COLORMAP" name="cmap" self="true" />
     <field type="CARD16" name="red" />
     <field type="CARD16" name="green" />
     <field type="CARD16" name="blue" />
@@ -4737,7 +4737,7 @@ The specified colormap `cmap` does not exist.
 
   <request name="CreateCursor" opcode="93">
     <pad bytes="1" />
-    <field type="CURSOR" name="cid" />
+    <field type="CURSOR" name="cid" create="true" />
     <field type="PIXMAP" name="source" />
     <field type="PIXMAP" name="mask" altenum="Pixmap" />
     <field type="CARD16" name="fore_red" />
@@ -4756,7 +4756,7 @@ The specified colormap `cmap` does not exist.
 
   <request name="CreateGlyphCursor" opcode="94">
     <pad bytes="1" />
-    <field type="CURSOR" name="cid" />
+    <field type="CURSOR" name="cid" create="true" />
     <field type="FONT" name="source_font" />
     <field type="FONT" name="mask_font" altenum="Font" />
     <field type="CARD16" name="source_char" />
