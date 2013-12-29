@@ -3247,7 +3247,7 @@ TODO: Reasons?
 
   <request name="OpenFont" opcode="45">
     <pad bytes="1" />
-    <field type="FONT" name="fid" />
+    <field type="FONT" name="fid" create="true"/>
     <field type="CARD16" name="name_len" />
     <pad bytes="2" />
     <list type="char" name="name">
@@ -3927,7 +3927,7 @@ The X server could not allocate the requested resources (no memory?).
 
   <request name="ChangeGC" opcode="56">
     <pad bytes="1" />
-    <field type="GCONTEXT" name="gc" />
+    <field type="GCONTEXT" name="gc" self="true" />
     <valueparam value-mask-type="CARD32"
                 value-mask-mask="GC"
                 value-mask-name="value_mask"
@@ -3992,8 +3992,8 @@ The X server could not allocate the requested resources (no memory?).
 
   <request name="CopyGC" opcode="57">
     <pad bytes="1" />
-    <field type="GCONTEXT" name="src_gc" self="true" />
-    <field type="GCONTEXT" name="dst_gc" />
+    <field type="GCONTEXT" name="src_gc" />
+    <field type="GCONTEXT" name="dst_gc" self="true" />
     <field type="CARD32" name="value_mask" mask="GC" />
   </request>
 
